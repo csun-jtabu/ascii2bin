@@ -27,9 +27,9 @@ int main (int argc, char * argv[], char ** envp)
         
             while (retval == 1)
             {
-                if(ascii_value == 0x30 || ascii_value == 0x31)
-                {
-                    //printf("%d\n", ascii_value);
+                if(ascii_value == 0x30 || ascii_value == 0x31) //if statement - UNLESS the ascii_value is 48 or 49
+                {                                              //the program will set the retval = 0 to exit the loop
+                    //printf("%d\n", ascii_value);             //Alt. meaning: Loop is terminated if not "1" or "0"
                     digit = ascii_value - offset;
                     number = (number << 1) + digit;         //number << 1 + digit //number * 2 + digit
                     retval = read(0, &ascii_value, 1);  
@@ -40,13 +40,14 @@ int main (int argc, char * argv[], char ** envp)
                 }
                 //printf("%d\n", digit);
             }
-    /*if(ascii_value != 0x30 || ascii_value != 0x31)
+            //printf("%d\n", ascii_value);
+        
+    if(ascii_value == 0x30 || ascii_value == 0x31 || ascii_value == 0x0a)
     {
-        return 1;
-    }*/
-    printf("%u\n", number);
-    return 0;
-
+        printf("%u\n", number);
+        return 0;
+    }
+    return 1;
 
 
 
