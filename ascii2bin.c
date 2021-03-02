@@ -44,7 +44,7 @@ int main (int argc, char * argv[], char ** envp)
     {
         return 1;
     }*/
-    printf("%d\n", number);
+    printf("%u\n", number);
     return 0;
 
 
