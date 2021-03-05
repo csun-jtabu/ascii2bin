@@ -1,0 +1,23 @@
+Script started on Fri 05 Mar 2021 01:46:34 AM PST
+]0;jst83366@ssh: ~/Comp122AsciiBinLab/ascii2bin[01;32mjst83366@ssh[00m:[01;34m~/Comp122AsciiBinLab/ascii2bin[00m$ ascii2bin
+0101
+5
+]0;jst83366@ssh: ~/Comp122AsciiBinLab/ascii2bin[01;32mjst83366@ssh[00m:[01;34m~/Comp122AsciiBinLab/ascii2bin[00m$ cat 54356.txt  | ./ascii2bin ; echo $?
+54356
+0
+]0;jst83366@ssh: ~/Comp122AsciiBinLab/ascii2bin[01;32mjst83366@ssh[00m:[01;34m~/Comp122AsciiBinLab/ascii2bin[00m$ cat 138.txt | ./ascii2bin ; echo $?
+138
+0
+]0;jst83366@ssh: ~/Comp122AsciiBinLab/ascii2bin[01;32mjst83366@ssh[00m:[01;34m~/Comp122AsciiBinLab/ascii2bin[00m$ cat 2863311530.txt | ./ascii2bin ; echo $?
+2863311530
+0
+]0;jst83366@ssh: ~/Comp122AsciiBinLab/ascii2bin[01;32mjst83366@ssh[00m:[01;34m~/Comp122AsciiBinLab/ascii2bin[00m$ cat 4294967295.txt | ./ascii2bin ; echo $?
+4294967295
+0
+]0;jst83366@ssh: ~/Comp122AsciiBinLab/ascii2bin[01;32mjst83366@ssh[00m:[01;34m~/Comp122AsciiBinLab/ascii2bin[00m$ cat error.txt | ./ascii2bin ; echo $?
+A number that is not a 1 or 0 has been entered. Please enter a number in binary with only 1s and 0s. 
+1
+]0;jst83366@ssh: ~/Comp122AsciiBinLab/ascii2bin[01;32mjst83366@ssh[00m:[01;34m~/Comp122AsciiBinLab/ascii2bin[00m$ exit
+exit
+
+Script done on Fri 05 Mar 2021 01:47:39 AM PST
