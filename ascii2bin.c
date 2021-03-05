@@ -1,4 +1,3 @@
-
 /********************************/
 /* Program Name: ascii2bin.c    */
 /* Author: Jaztin Tabunda       */
@@ -12,7 +11,7 @@
 /* Validation Checks:                                                                                        */
 /* - Each ASCII input character is one of the following characters: '0', '1', or '\n'                        */
 /* - The calculated number does not exceed 2^32                                                              */
-/* -                                                                                                         */
+/* - EOT or newline character (\n) causes the program to stop reading the string of numbers                  */
 /* Enhancements:                                                                                             */
 /* - Made the program state what's the problem with the input. (Not a 1 or 0 / Exceeds 2^32)                 */
 /*************************************************************************************************************/
@@ -22,7 +21,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <math.h>
 
 int main (int argc, char * argv[], char ** envp)
 {
@@ -30,6 +28,7 @@ int main (int argc, char * argv[], char ** envp)
         
         char count = 0; 
         char ascii_value = 0;
+        char prevAscii = 0;
         char offset = 0x30;                  //0x30 = 48
         char digit = 0;
         unsigned int number = 0;  
@@ -39,6 +38,7 @@ int main (int argc, char * argv[], char ** envp)
         
             while (retval == 1)
             {
+                prevAscii = ascii_value;                        //saves the previous ascii_value
                                                                     //2. validate that the read byte is appropriate for conversion, e.g., it must be either an ASCII '0' or '1'
                 if(ascii_value == 0x30 || ascii_value == 0x31)      //if statement - Loop is terminated if not "1" or "0".
                 {                                                   //This leads to the end of the program too.
@@ -47,9 +47,14 @@ int main (int argc, char * argv[], char ** envp)
                     number = (number << 1) + digit;                 //4. uses the resulting integer as part of the calcuation to determine the final number
                     retval = read(0, &ascii_value, 1);  
                 }
-                else if(ascii_value == 0x0a)
-                {
-                    retval = read(0, &ascii_value, 1);
+                else if(ascii_value == 0x0a)                    //if the ascii is newline character, it'll run this block
+                {                                               //this else if statement allows for characters to still be
+                    retval = read(0, &ascii_value, 1);          //read until the eot (end of transmission) character (^d)
+                    if(prevAscii == ascii_value)
+                    {                                           //the if statment here allows the newline to tell the program
+                        retval = 0;                             //that it's done reading the string of numbers
+                    }
+                    
                 }
                 else                                                //5. identifies the end of a input string by either end of file or by a new line
                 {                                                   //The program exits the loop and stops reading values if
