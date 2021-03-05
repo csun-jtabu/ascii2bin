@@ -47,6 +47,10 @@ int main (int argc, char * argv[], char ** envp)
                     number = (number << 1) + digit;                 //4. uses the resulting integer as part of the calcuation to determine the final number
                     retval = read(0, &ascii_value, 1);  
                 }
+                else if(ascii_value == 0x0a)
+                {
+                    retval = read(0, &ascii_value, 1);
+                }
                 else                                                //5. identifies the end of a input string by either end of file or by a new line
                 {                                                   //The program exits the loop and stops reading values if
                         retval = 0;                                 //End of file is detected when read() returns the value '0' or
@@ -55,8 +59,9 @@ int main (int argc, char * argv[], char ** envp)
             }
             
         
-    if((ascii_value == 0x30 || ascii_value == 0x31 || ascii_value == 0x0a) && MAX_POWER >= count) //7. returns a value of 0 upon success and 1 otherwise
+    if((ascii_value == 0x30 || ascii_value == 0x31 || ascii_value == 0x0a || ascii_value == 0x04) && MAX_POWER >= count) //7. returns a value of 0 upon success and 1 otherwise
     {   
+        
         printf("%u\n", number);                                 //6. prints this final number on stdout
         return 0;                                               
     }                                                           
